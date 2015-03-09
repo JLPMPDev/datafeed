@@ -1,0 +1,5 @@
+mailing-list:
+  - name: Nicholas Bayley
+    email-address: nick_bayley@johnlewis.co.uk
+template-path: C:\Temp\template.html
+feed-path: C:\Temp\datafeed.txt
