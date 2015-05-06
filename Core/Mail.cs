@@ -33,7 +33,9 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // message subject and body
-                message.Subject = "Datafeed: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(-10).ToShortTimeString();
+                string rightNow = DateTime.Now.ToShortDateString();
+                string minusTen = DateTime.Now.AddMinutes(-10).ToShortTimeString();
+                message.Subject = String.Format("Datafeed: {0} {1}", rightNow, minusTen);
 
                 var groups = Attribute.BuildGroups(list);
 
