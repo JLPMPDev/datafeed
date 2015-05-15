@@ -37,7 +37,7 @@ namespace JLPMPDev.Datafeed.Core
                     attributes.Add(attribute);
                 }
             }
-            attributes = attributes.FindAll(x => (x.value < x.lower || x.value > x.upper) || (x.lower == 0 && x.upper == 0));
+            attributes = attributes.FindAll(x => (x.value < x.lower || x.value >= x.upper) || (x.lower == 0 && x.upper == 0));
             return attributes;
         }
 

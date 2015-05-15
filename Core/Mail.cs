@@ -35,7 +35,7 @@ namespace JLPMPDev.Datafeed.Core
                 // message subject and body
                 string rightNow = DateTime.Now.ToShortDateString();
                 string minusTen = DateTime.Now.AddMinutes(-10).ToShortTimeString();
-                message.Subject = String.Format("Datafeed: {0} {1}", rightNow, minusTen);
+                message.Subject = String.Format("{0}: {1} {2}", config.feedTitle, rightNow, minusTen);
 
                 var groups = Attribute.BuildGroups(list);
 
@@ -74,7 +74,8 @@ namespace JLPMPDev.Datafeed.Core
                 using (StreamReader sr = new StreamReader(config.templatePath))
                 {
                     message.Body = sr.ReadToEnd().Replace("%main%", sb.ToString())
-                                                 .Replace("%lm%", modifiedTime);
+                                                 .Replace("%lastModified%", modifiedTime)
+                                                 .Replace("%feedTitle%", config.feedTitle);
                 }
 
                 // send message

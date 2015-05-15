@@ -14,6 +14,8 @@ namespace JLPMPDev.Datafeed.Core
         public string templatePath { get; set; }
         [YamlMember(Alias = "feed-path")]
         public string feedPath { get; set; }
+        [YamlMember(Alias = "feed-title")]
+        public string feedTitle { get; set; }
 
         public static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
 

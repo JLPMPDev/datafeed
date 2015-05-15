@@ -19,7 +19,6 @@ namespace JLPMPDev.Datafeed.CLI
                 if (list.Count < 1)
                 {
                     Console.WriteLine("Feed is empty. Press any key to exit.");
-                    Console.ReadKey();
                     return;
                 }
 
