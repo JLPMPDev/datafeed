@@ -48,7 +48,12 @@ namespace JLPMPDev.Datafeed.Core
                         sw.WriteLine("<ul>");
                         foreach (var record in group)
                         {
-                            sw.WriteLine("<li>{0}: <b>{1}</b></li>", record.name, record.value);
+                            string html = String.Format("<li>{0}: <strong>{1}</strong>", record.name, record.value);
+                            if (record.description != String.Empty)
+                            {
+                                html += String.Format(" | <em>{0}</em>", record.description);
+                            }
+                            sw.WriteLine(html);
                         }
                         sw.WriteLine("</ul>");
                     }

@@ -11,14 +11,16 @@ namespace JLPMPDev.Datafeed.Core
         public int value { get; private set; }
         public int lower { get; private set; }
         public int upper { get; private set; }
+        public string description { get; private set; }
 
-        private Attribute(string grouping, string name, string value, string lower, string upper)
+        private Attribute(string grouping, string name, string value, string lower, string upper, string description)
         {
             this.grouping = grouping;
             this.name = name;
             this.value = int.Parse(value);
             this.lower = int.Parse(lower);
             this.upper = int.Parse(upper);
+            this.description = description;
         }
 
         public static List<Attribute> BuildList(string path)
@@ -30,12 +32,12 @@ namespace JLPMPDev.Datafeed.Core
                 {
                     var split = sr.ReadLine().Split(',');
 
-                    Attribute attribute = new Attribute(split[0], split[1], split[2], split[3], split[4]);
+                    Attribute attribute = new Attribute(split[0], split[1], split[2], split[3], split[4], split[5]);
 
                     attributes.Add(attribute);
                 }
             }
-            attributes = attributes.FindAll(x => (x.value > x.lower && x.value < x.upper) || (x.lower == 0 && x.upper == 0));
+            attributes = attributes.FindAll(x => (x.value < x.lower || x.value > x.upper) || (x.lower == 0 && x.upper == 0));
             return attributes;
         }
 
