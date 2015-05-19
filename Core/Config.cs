@@ -8,14 +8,10 @@ namespace JLPMPDev.Datafeed.Core
 {
     public class Config
     {
-        [YamlMember(Alias = "mailing-list")]
-        public List<Mail> mailingList { get; set; }
-        [YamlMember(Alias = "template-path")]
-        public string templatePath { get; set; }
-        [YamlMember(Alias = "feed-path")]
-        public string feedPath { get; set; }
-        [YamlMember(Alias = "feed-title")]
-        public string feedTitle { get; set; }
+        public List<Email> email { get; set; }
+        public Template template { get; set; }
+        public Feed feed { get; set; }
+        public Report report { get; set; }
 
         public static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
 
@@ -26,5 +22,26 @@ namespace JLPMPDev.Datafeed.Core
             Config config = deserializer.Deserialize<Config>(input);
             return config;
         }
+    }
+
+    public class Email
+    {
+        public string name { get; set; }
+        public string address { get; set; }
+    }
+
+    public class Template
+    {
+        public string path { get; set; }
+    }
+
+    public class Feed
+    {
+        public string path { get; set; }
+    }
+
+    public class Report
+    {
+        public string title { get; set; }
     }
 }

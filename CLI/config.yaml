@@ -1,6 +1,9 @@
-mailing-list:
+email:
   - name: Nicholas Bayley
-    email-address: nick_bayley@johnlewis.co.uk
-template-path: C:\Temp\template.html
-feed-path: C:\Temp\datafeed.txt
-feed-title: OCCO Check
+    address: nick_bayley@johnlewis.co.uk
+template:
+  path: C:\Temp\template.html
+feed: 
+  path: C:\Temp\datafeed.txt
+report:
+  title: OCCO Check
