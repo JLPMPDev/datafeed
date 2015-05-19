@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
-using YamlDotNet.Serialization;
 
 namespace JLPMPDev.Datafeed.Core
 {
@@ -29,9 +28,7 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // message subject and body
-                string rightNow = DateTime.Now.ToShortDateString();
-                string minusTen = DateTime.Now.AddMinutes(-10).ToShortTimeString();
-                message.Subject = String.Format("{0}: {1} {2}", config.report.title, rightNow, minusTen);
+                message.Subject = String.Format("{0}: {1}", config.report.title, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
                 var groups = Attribute.BuildGroups(list);
 
@@ -56,21 +53,21 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // get last write time of file
-                DateTime writeTime = File.GetLastWriteTime(config.feed.path);
-                string modifiedTime;
-                if (writeTime < DateTime.Now.AddMinutes(-30))
+                string feedTime = config.feed.FeedTime().ToString("dd/MM/yyyy HH:mm");
+                string feedStatus;
+                if (config.feed.FeedTime() < DateTime.Now.AddMinutes(-30))
                 {
-                    modifiedTime = String.Format("<span class=\"old\">{0}</span>", writeTime.ToString());
+                    feedStatus = String.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
                 }
                 else
                 {
-                    modifiedTime = String.Format(writeTime.ToString());
+                    feedStatus = "Feed Status: No problems found.";
                 }
 
                 using (StreamReader sr = new StreamReader(config.template.path))
                 {
                     message.Body = sr.ReadToEnd().Replace("%main%", sb.ToString())
-                                                 .Replace("%lastModified%", modifiedTime)
+                                                 .Replace("%feedStatus%", feedStatus)
                                                  .Replace("%reportTitle%", config.report.title);
                 }
 

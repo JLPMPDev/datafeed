@@ -38,6 +38,11 @@ namespace JLPMPDev.Datafeed.Core
     public class Feed
     {
         public string path { get; set; }
+
+        public DateTime FeedTime()
+        {
+            return File.GetLastWriteTime(this.path);
+        }
     }
 
     public class Report
