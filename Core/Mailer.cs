@@ -7,7 +7,7 @@ using YamlDotNet.Serialization;
 
 namespace JLPMPDev.Datafeed.Core
 {
-    public class Mail
+    public class Mailer
     {
         public static void SendMail(List<Attribute> list, Config config)
         {

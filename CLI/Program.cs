@@ -23,7 +23,7 @@ namespace JLPMPDev.Datafeed.CLI
                 }
 
                 Console.WriteLine("Attempting to send message. Please wait...");
-                Mail.SendMail(list, config);
+                Mailer.SendMail(list, config);
             }
             catch (Exception e)
             {
