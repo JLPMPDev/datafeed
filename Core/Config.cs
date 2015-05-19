@@ -12,6 +12,8 @@ namespace JLPMPDev.Datafeed.Core
         public Template Template { get; set; }
         public Feed Feed { get; set; }
         public Report Report { get; set; }
+        [YamlMember(Alias = "smtp")]
+        public SMTP SMTP { get; set; }
 
         public static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
 
@@ -48,5 +50,11 @@ namespace JLPMPDev.Datafeed.Core
     public class Report
     {
         public string Title { get; set; }
+    }
+
+    public class SMTP
+    {
+        public string Host { get; set; }
+        public string Port { get; set; }
     }
 }

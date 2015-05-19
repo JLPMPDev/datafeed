@@ -7,3 +7,6 @@ feed:
   path: C:\Temp\datafeed.txt
 report:
   title: OCCO Check
+smtp:
+  host: 172.22.200.140
+  port: 25
