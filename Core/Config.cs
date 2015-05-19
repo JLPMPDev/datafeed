@@ -8,10 +8,10 @@ namespace JLPMPDev.Datafeed.Core
 {
     public class Config
     {
-        public List<Email> email { get; set; }
-        public Template template { get; set; }
-        public Feed feed { get; set; }
-        public Report report { get; set; }
+        public List<Email> Email { get; set; }
+        public Template Template { get; set; }
+        public Feed Feed { get; set; }
+        public Report Report { get; set; }
 
         public static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.yaml");
 
@@ -26,27 +26,27 @@ namespace JLPMPDev.Datafeed.Core
 
     public class Email
     {
-        public string name { get; set; }
-        public string address { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
     }
 
     public class Template
     {
-        public string path { get; set; }
+        public string Path { get; set; }
     }
 
     public class Feed
     {
-        public string path { get; set; }
+        public string Path { get; set; }
 
         public DateTime FeedTime()
         {
-            return File.GetLastWriteTime(this.path);
+            return File.GetLastWriteTime(this.Path);
         }
     }
 
     public class Report
     {
-        public string title { get; set; }
+        public string Title { get; set; }
     }
 }

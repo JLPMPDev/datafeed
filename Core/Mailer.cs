@@ -21,14 +21,14 @@ namespace JLPMPDev.Datafeed.Core
                 // mail from
                 message.From = new MailAddress("admin@datafeed.co.uk", "Datafeed");
                 // mail to
-                foreach (Email mail in config.email)
+                foreach (Email mail in config.Email)
                 {
-                    MailAddress to = new MailAddress(mail.address, mail.name);
+                    MailAddress to = new MailAddress(mail.Address, mail.Name);
                     message.To.Add(to);
                 }
 
                 // message subject and body
-                message.Subject = String.Format("{0}: {1}", config.report.title, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                message.Subject = String.Format("{0}: {1}", config.Report.Title, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
                 var groups = Attribute.BuildGroups(list);
 
@@ -41,10 +41,10 @@ namespace JLPMPDev.Datafeed.Core
                         sw.WriteLine("<ul>");
                         foreach (var record in group)
                         {
-                            string html = String.Format("<li>{0}: <strong>{1}</strong>", record.name, record.value);
-                            if (record.description != String.Empty)
+                            string html = String.Format("<li>{0}: <strong>{1}</strong>", record.Name, record.Value);
+                            if (record.Description != String.Empty)
                             {
-                                html += String.Format(" | <em>{0}</em>", record.description);
+                                html += String.Format(" | <em>{0}</em>", record.Description);
                             }
                             sw.WriteLine(html);
                         }
@@ -53,9 +53,9 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // get last write time of file
-                string feedTime = config.feed.FeedTime().ToString("dd/MM/yyyy HH:mm");
+                string feedTime = config.Feed.FeedTime().ToString("dd/MM/yyyy HH:mm");
                 string feedStatus;
-                if (config.feed.FeedTime() < DateTime.Now.AddMinutes(-30))
+                if (config.Feed.FeedTime() < DateTime.Now.AddMinutes(-30))
                 {
                     feedStatus = String.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
                 }
@@ -64,11 +64,11 @@ namespace JLPMPDev.Datafeed.Core
                     feedStatus = "Feed Status: No problems found.";
                 }
 
-                using (StreamReader sr = new StreamReader(config.template.path))
+                using (StreamReader sr = new StreamReader(config.Template.Path))
                 {
                     message.Body = sr.ReadToEnd().Replace("%main%", sb.ToString())
                                                  .Replace("%feedStatus%", feedStatus)
-                                                 .Replace("%reportTitle%", config.report.title);
+                                                 .Replace("%reportTitle%", config.Report.Title);
                 }
 
                 // send message

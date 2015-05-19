@@ -14,7 +14,7 @@ namespace JLPMPDev.Datafeed.CLI
             {
                 // read feed and build list
                 Console.WriteLine("Attemping to read feed. Please wait...");
-                List<Core.Attribute> list = Core.Attribute.BuildList(config.feed.path);
+                List<Core.Attribute> list = Core.Attribute.BuildList(config.Feed.Path);
 
                 if (list.Count < 1)
                 {

@@ -6,21 +6,21 @@ namespace JLPMPDev.Datafeed.Core
 {
     public class Attribute
     {
-        public string grouping { get; private set; }
-        public string name { get; private set; }
-        public int value { get; private set; }
-        public int lower { get; private set; }
-        public int upper { get; private set; }
-        public string description { get; private set; }
+        public string Grouping { get; private set; }
+        public string Name { get; private set; }
+        public int Value { get; private set; }
+        public int Lower { get; private set; }
+        public int Upper { get; private set; }
+        public string Description { get; private set; }
 
         private Attribute(string grouping, string name, string value, string lower, string upper, string description)
         {
-            this.grouping = grouping;
-            this.name = name;
-            this.value = int.Parse(value);
-            this.lower = int.Parse(lower);
-            this.upper = int.Parse(upper);
-            this.description = description;
+            this.Grouping = grouping;
+            this.Name = name;
+            this.Value = int.Parse(value);
+            this.Lower = int.Parse(lower);
+            this.Upper = int.Parse(upper);
+            this.Description = description;
         }
 
         public static List<Attribute> BuildList(string path)
@@ -37,7 +37,7 @@ namespace JLPMPDev.Datafeed.Core
                     attributes.Add(attribute);
                 }
             }
-            attributes = attributes.FindAll(x => (x.value < x.lower || x.value >= x.upper) || (x.lower == 0 && x.upper == 0));
+            attributes = attributes.FindAll(x => (x.Value < x.Lower || x.Value >= x.Upper) || (x.Lower == 0 && x.Upper == 0));
             return attributes;
         }
 
@@ -45,7 +45,7 @@ namespace JLPMPDev.Datafeed.Core
         {
             var groups =
                 from a in attrs
-                group a by a.grouping into groupings
+                group a by a.Grouping into groupings
                 orderby groupings.Key
                 select groupings;
 
@@ -54,7 +54,7 @@ namespace JLPMPDev.Datafeed.Core
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}", name, value);
+            return string.Format("{0}: {1}", Name, Value);
         }
     }
 }
