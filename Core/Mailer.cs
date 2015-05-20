@@ -13,7 +13,7 @@ namespace JLPMPDev.Datafeed.Core
             try
             {
                 // initialize SmtpClient and MailMessage
-                SmtpClient client = new SmtpClient(config.SMTP.Host, int.Parse(config.SMTP.Port));
+                SmtpClient client = new SmtpClient(config.SMTP.Host, config.SMTP.Port);
                 MailMessage message = new MailMessage();
 
                 message.IsBodyHtml = true;

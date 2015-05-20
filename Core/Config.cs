@@ -55,6 +55,6 @@ namespace JLPMPDev.Datafeed.Core
     public class SMTP
     {
         public string Host { get; set; }
-        public string Port { get; set; }
+        public int Port { get; set; }
     }
 }
