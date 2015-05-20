@@ -20,6 +20,7 @@ namespace JLPMPDev.Datafeed.Core
 
                 // mail from
                 message.From = new MailAddress("admin@datafeed.co.uk", "Datafeed");
+
                 // mail to
                 foreach (Email mail in config.Email)
                 {
@@ -28,7 +29,7 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // message subject and body
-                message.Subject = String.Format("{0}: {1}", config.Report.Title, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+                message.Subject = string.Format("{0}: {1}", config.Report.Title, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
                 var groups = Attribute.BuildGroups(list);
 
@@ -41,13 +42,15 @@ namespace JLPMPDev.Datafeed.Core
                         sw.WriteLine("<ul>");
                         foreach (var record in group)
                         {
-                            string html = String.Format("<li>{0}: <strong>{1}</strong>", record.Name, record.Value);
-                            if (record.Description != String.Empty)
+                            string html = string.Format("<li>{0}: <strong>{1}</strong>", record.Name, record.Value);
+                            if (record.Description != string.Empty)
                             {
-                                html += String.Format(" | <em>{0}</em>", record.Description);
+                                html += string.Format(" | <em>{0}</em>", record.Description);
                             }
+
                             sw.WriteLine(html);
                         }
+
                         sw.WriteLine("</ul>");
                     }
                 }
@@ -57,7 +60,7 @@ namespace JLPMPDev.Datafeed.Core
                 string feedStatus;
                 if (config.Feed.FeedTime() < DateTime.Now.AddMinutes(-30))
                 {
-                    feedStatus = String.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
+                    feedStatus = string.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
                 }
                 else
                 {

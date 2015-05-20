@@ -6,7 +6,7 @@ namespace JLPMPDev.Datafeed.CLI
 {
     public class Program
     {
-        static void Main(string[] Args)
+        static void Main()
         {
             Config config = Config.Deserialize();
 

@@ -37,6 +37,7 @@ namespace JLPMPDev.Datafeed.Core
                     attributes.Add(attribute);
                 }
             }
+
             attributes = attributes.FindAll(x => (x.Value < x.Lower || x.Value >= x.Upper) || (x.Lower == 0 && x.Upper == 0));
             return attributes;
         }
@@ -54,7 +55,7 @@ namespace JLPMPDev.Datafeed.Core
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}", Name, Value);
+            return string.Format("{0}: {1}", this.Name, this.Value);
         }
     }
 }
