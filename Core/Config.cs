@@ -41,7 +41,7 @@ namespace JLPMPDev.Datafeed.Core
     {
         public string Path { get; set; }
 
-        public DateTime FeedTime()
+        public DateTime RetrievalTime()
         {
             return File.GetLastWriteTime(this.Path);
         }

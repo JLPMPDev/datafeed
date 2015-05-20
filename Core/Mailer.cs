@@ -56,9 +56,9 @@ namespace JLPMPDev.Datafeed.Core
                 }
 
                 // get last write time of file
-                string feedTime = config.Feed.FeedTime().ToString("dd/MM/yyyy HH:mm");
+                string feedTime = config.Feed.RetrievalTime().ToString("dd/MM/yyyy HH:mm");
                 string feedStatus;
-                if (config.Feed.FeedTime() < DateTime.Now.AddMinutes(-30))
+                if (config.Feed.RetrievalTime() < DateTime.Now.AddMinutes(-30))
                 {
                     feedStatus = string.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
                 }
