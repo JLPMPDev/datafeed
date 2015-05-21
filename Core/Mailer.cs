@@ -13,7 +13,8 @@ namespace JLPMPDev.Datafeed.Core
       try
       {
         // initialize SmtpClient and MailMessage
-        SmtpClient client = new SmtpClient(config.SMTP.Host, config.SMTP.Port ?? SMTP.DefaultSMTPPort);
+        int smtpPort = config.SMTP.Port ?? SMTP.DefaultSMTPPort;
+        SmtpClient client = new SmtpClient(config.SMTP.Host, smtpPort);
         MailMessage message = new MailMessage();
         
         message.IsBodyHtml = true;
@@ -29,7 +30,9 @@ namespace JLPMPDev.Datafeed.Core
         }
 
         // message subject and body
-        message.Subject = string.Format("{0}: {1}", config.Report.Title ?? Report.DefaultReportTitle, DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+        string reportTitle = config.Report.Title ?? Report.DefaultReportTitle;
+        string timeNow = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        message.Subject = string.Format("{0}: {1}", reportTitle, timeNow);
 
         var groups = Attribute.BuildGroups(list);
 
@@ -56,23 +59,25 @@ namespace JLPMPDev.Datafeed.Core
         }
 
         // get last write time of file
-        string feedTime = config.Feed.RetrievalTime().ToString("dd/MM/yyyy HH:mm");
+        string feedRetrievalAt = config.Feed.RetrievalAt().ToString("dd/MM/yyyy HH:mm");
         string feedStatus;
-        if (config.Feed.RetrievalTime() < DateTime.Now.AddMinutes(-30))
+        if (config.Feed.RetrievalAt() < DateTime.Now.AddMinutes(-30))
         {
-          feedStatus = string.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedTime);
+          feedStatus = string.Format("Feed Status: <span class=\"old\">Out of date. [{0}]</span>", feedRetrievalAt);
         }
         else
         {
           feedStatus = "Feed Status: No problems found.";
         }
 
-        using (StreamReader sr = new StreamReader(config.Template.Path ?? Template.DefaultTemplatePath))
+        string templatePath = config.Template.Path ?? Template.DefaultTemplatePath;
+        using (StreamReader sr = new StreamReader(templatePath))
         {
+          reportTitle = config.Report.Title ?? Report.DefaultReportTitle;
           message.Body = 
             sr.ReadToEnd().Replace("%main%", sb.ToString())
                           .Replace("%feedStatus%", feedStatus)
-                          .Replace("%reportTitle%", config.Report.Title ?? Report.DefaultReportTitle);
+                          .Replace("%reportTitle%", reportTitle);
         }
 
         // send message

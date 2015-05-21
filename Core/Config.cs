@@ -56,7 +56,7 @@ namespace JLPMPDev.Datafeed.Core
 
     public static readonly string DefaultFeedPath = "feed.txt";
 
-    public DateTime RetrievalTime()
+    public DateTime RetrievalAt()
     {
       return File.GetLastWriteTime(this.Path);
     }
