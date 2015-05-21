@@ -22,14 +22,14 @@ report:
 
 | Configuration | Description | Mandatory |
 | ------------- | ----------- | --------- |
-| `email: name` | Name of the email recipient | ✔ |
+| `email: name` | Name of the email recipient | ✘ |
 | `email: address` | Address of the email recipient | ✔ |
 ||||
 | `template: path` | Absolute or relative path to the HTML template (default: `template.html`) | ✘ |
 ||||
 | `feed: path` | Absolute or relative path to the feed to be parsed (default: `feed.txt`) | ✘ |
 ||||
-| `report: title` | The reports title. This is used in the template (`reportTitle`) | ✘ |
+| `report: title` | The reports title, this is used in the template (variable: `reportTitle`, default: `Datafeed`) | ✘ |
 ||||
 | `smtp: host` | Host name or IP of the SMTP server | ✔ |
 | `smtp: port` | Port of the SMTP server (default: `25`) | ✘ |
@@ -38,4 +38,7 @@ report:
 :construction:
 
 ## Template
+:construction:
+
+## Scheduler
 :construction:
