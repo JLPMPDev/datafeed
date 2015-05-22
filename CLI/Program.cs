@@ -6,12 +6,16 @@ namespace JLPMPDev.Datafeed.CLI
 {
   public class Program
   {
+    public static readonly string CLIVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
     static void Main()
     {
-      Config config = Config.Deserialize();
+      
+      Config config = Config.Deserialize();      
 
       try
       {
+        Console.WriteLine("Starting Datafeed v" + CLIVersion + "...");
         // read feed and build list
         Console.WriteLine("Attemping to read feed. Please wait...");
         string feedPath = config.Feed.Path ?? Feed.DefaultFeedPath;
