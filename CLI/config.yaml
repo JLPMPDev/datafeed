@@ -2,11 +2,11 @@ email:
   - name: Nicholas Bayley
     address: nick_bayley@johnlewis.co.uk
 template:
-  path: C:\Temp\template.html
+  path: template.html
 feed: 
-  path: C:\Temp\datafeed.txt
+  path: datafeed.txt
 report:
-  title: OCCO Check
+  title: Datafeed
 smtp:
   host: 172.22.200.140
   port: 25
