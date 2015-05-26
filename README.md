@@ -4,7 +4,7 @@ Datafeed ... :construction:
 ## Installation
 Datafeed is currently available via two methods:
 
-+ Download the latest ***zip file (.7z)*** from [downloads][0] (or a previous
++ Download the latest zip file (.7z) from [releases][0] (or a previous
   version if you desire).
 + Clone or fork this repository and then build the CLI from source.
 
@@ -45,10 +45,10 @@ report:
 :construction:
 
 ## Scheduler
-Unfortunately, Datafeed has no scheduler is built into it. This is planned as a
+Unfortunately, Datafeed has no scheduler built into it. This is planned as a
 future enhancement. This has no current eta.
 
 Windows Task Scheduler can be used to schedule the export of the feed (from
   Toad for example) and the running of Datafeed's executable.
 
-[0]: https://bitbucket.org/JLPMPDev/datafeed/downloads
+[0]: https://github.com/jlpmp-dev/datafeed/releases
