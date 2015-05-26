@@ -5,7 +5,7 @@ Datafeed ... :construction:
 Datafeed is currently available via two methods:
 
 + Download the latest zip file (.7z) from [github][0] or [bitbucket][1] (or a
-  revious version if you desire).
+  previous version if you desire).
 + Clone or fork this repository and then build the CLI from source.
 
 ## Configuration
