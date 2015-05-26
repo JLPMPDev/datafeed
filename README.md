@@ -4,8 +4,8 @@ Datafeed ... :construction:
 ## Installation
 Datafeed is currently available via two methods:
 
-+ Download the latest zip file (.7z) from [releases][0] (or a previous
-  version if you desire).
++ Download the latest zip file (.7z) from [github][0] or [bitbucket][1] (or a
+  revious version if you desire).
 + Clone or fork this repository and then build the CLI from source.
 
 ## Configuration
@@ -52,3 +52,4 @@ Windows Task Scheduler can be used to schedule the export of the feed (from
   Toad for example) and the running of Datafeed's executable.
 
 [0]: https://github.com/jlpmp-dev/datafeed/releases
+[1]: https://bitbucket.org/JLPMPDev/datafeed/downloads
