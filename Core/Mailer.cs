@@ -20,7 +20,7 @@ namespace JLPMPDev.Datafeed.Core
         message.IsBodyHtml = true;
 
         // mail from
-        message.From = new MailAddress("admin@datafeed.co.uk", "Datafeed");
+        message.From = new MailAddress("datafeed@jlpmpdev.co.uk", "Datafeed");
         
         // mail to
         foreach (Email mail in config.Email)

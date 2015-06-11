@@ -1,6 +1,6 @@
 email:
   - name: Nicholas Bayley
-    address: nick_bayley@johnlewis.co.uk
+    address: nick.bayley@johnlewis.co.uk
 template:
   path: template.html
 feed: 
