@@ -14,18 +14,18 @@ namespace JLPMPDev.Datafeed.Core
       {
         // initialize SmtpClient and MailMessage
         int smtpPort = config.SMTP.Port ?? SMTP.DefaultSMTPPort;
-        SmtpClient client = new SmtpClient(config.SMTP.Host, smtpPort);
-        MailMessage message = new MailMessage();
+        var client = new SmtpClient(config.SMTP.Host, smtpPort);
+        var message = new MailMessage();
         
         message.IsBodyHtml = true;
 
         // mail from
-        message.From = new MailAddress("datafeed@jlpmpdev.co.uk", "Datafeed");
+        message.From = new MailAddress("datafeed@magnapark-jlp.io", "Datafeed");
         
         // mail to
         foreach (Email mail in config.Email)
         {
-          MailAddress to = new MailAddress(mail.Address, mail.Name);
+          var to = new MailAddress(mail.Address, mail.Name);
           message.To.Add(to);
         }
 
@@ -36,8 +36,8 @@ namespace JLPMPDev.Datafeed.Core
 
         var groups = Attribute.BuildGroups(list);
 
-        StringBuilder sb = new StringBuilder();
-        using (StringWriter sw = new StringWriter(sb))
+        var sb = new StringBuilder();
+        using (var sw = new StringWriter(sb))
         {
           foreach (var group in groups)
           {
@@ -71,7 +71,7 @@ namespace JLPMPDev.Datafeed.Core
         }
 
         string templatePath = config.Template.Path ?? Template.DefaultTemplatePath;
-        using (StreamReader sr = new StreamReader(templatePath))
+        using (var sr = new StreamReader(templatePath))
         {
           reportTitle = config.Report.Title ?? Report.DefaultReportTitle;
           message.Body = 

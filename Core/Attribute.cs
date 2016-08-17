@@ -25,14 +25,14 @@ namespace JLPMPDev.Datafeed.Core
 
     public static List<Attribute> BuildList(string path)
     {
-      List<Attribute> attributes = new List<Attribute>();
-      using (StreamReader sr = new StreamReader(path))
+      var attributes = new List<Attribute>();
+      using (var sr = new StreamReader(path))
       {
         while (!sr.EndOfStream)
         {
           var split = sr.ReadLine().Split(',');
 
-          Attribute attribute = new Attribute(split[0], split[1], split[2], split[3], split[4], split[5]);
+          var attribute = new Attribute(split[0], split[1], split[2], split[3], split[4], split[5]);
 
           attributes.Add(attribute);
         }
